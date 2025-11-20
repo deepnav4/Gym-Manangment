@@ -1,0 +1,132 @@
+# API Testing Examples for Gym Management System
+# Use these examples with Postman, Thunder Client, or any HTTP client
+
+# ==================================================
+# AUTHENTICATION ENDPOINTS
+# ==================================================
+
+### 1. MEMBER SIGNUP
+POST http://localhost:3000/api/auth/signup
+Content-Type: application/json
+
+{
+  "name": "John Doe",
+  "email": "john@example.com",
+  "password": "password123",
+  "age": 25,
+  "gender": "male",
+  "phone": "1234567890"
+}
+
+### 2. MEMBER LOGIN
+POST http://localhost:3000/api/auth/login
+Content-Type: application/json
+
+{
+  "email": "john@example.com",
+  "password": "password123"
+}
+
+### 3. TRAINER LOGIN
+POST http://localhost:3000/api/auth/trainer/login
+Content-Type: application/json
+
+{
+  "email": "john.trainer@gym.com",
+  "password": "trainer123"
+}
+
+# ==================================================
+# MEMBER ENDPOINTS (Requires Member Token)
+# ==================================================
+
+### 4. GET MEMBER PROFILE
+GET http://localhost:3000/api/member/profile
+Authorization: Bearer YOUR_MEMBER_ACCESS_TOKEN
+
+### 5. GET MEMBER WORKOUT PLANS
+GET http://localhost:3000/api/member/my/workout
+Authorization: Bearer YOUR_MEMBER_ACCESS_TOKEN
+
+### 6. GET MEMBER DIET PLANS
+GET http://localhost:3000/api/member/my/diet
+Authorization: Bearer YOUR_MEMBER_ACCESS_TOKEN
+
+### 7. GET MEMBER ATTENDANCE
+GET http://localhost:3000/api/member/my/attendance
+Authorization: Bearer YOUR_MEMBER_ACCESS_TOKEN
+
+### 8. GET MEMBER PROGRESS
+GET http://localhost:3000/api/member/my/progress
+Authorization: Bearer YOUR_MEMBER_ACCESS_TOKEN
+
+# ==================================================
+# TRAINER ENDPOINTS (Requires Trainer Token)
+# ==================================================
+
+### 9. GET ALL MEMBERS
+GET http://localhost:3000/api/trainer/members
+Authorization: Bearer YOUR_TRAINER_ACCESS_TOKEN
+
+### 10. UPDATE MEMBER WORKOUT PLAN
+PUT http://localhost:3000/api/trainer/members/MEMBER_ID_HERE/workout
+Authorization: Bearer YOUR_TRAINER_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "plan_details": "Day 1: Chest & Triceps\n- Bench Press 4x8\n- Incline Dumbbell Press 3x10\n- Cable Flyes 3x12\n- Tricep Dips 3x10\n- Overhead Tricep Extension 3x12\n\nDay 2: Back & Biceps\n- Deadlift 4x6\n- Pull-ups 3x10\n- Barbell Rows 4x8\n- Lat Pulldown 3x12\n- Bicep Curls 3x12\n\nDay 3: Legs\n- Squats 4x8\n- Leg Press 3x10\n- Romanian Deadlift 3x10\n- Leg Curls 3x12\n- Calf Raises 4x15\n\nDay 4: Shoulders\n- Military Press 4x8\n- Lateral Raises 3x12\n- Front Raises 3x12\n- Face Pulls 3x15"
+}
+
+### 11. UPDATE MEMBER DIET PLAN
+PUT http://localhost:3000/api/trainer/members/MEMBER_ID_HERE/diet
+Authorization: Bearer YOUR_TRAINER_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "diet_details": "MEAL 1 (Breakfast - 7:00 AM):\n- Oatmeal: 80g\n- Whole Eggs: 3\n- Banana: 1\n- Protein: 30g, Carbs: 60g, Fats: 15g\n\nMEAL 2 (Mid-Morning - 10:00 AM):\n- Greek Yogurt: 200g\n- Mixed Nuts: 30g\n- Apple: 1\n- Protein: 20g, Carbs: 35g, Fats: 15g\n\nMEAL 3 (Lunch - 1:00 PM):\n- Grilled Chicken Breast: 200g\n- Brown Rice: 150g\n- Mixed Vegetables: 200g\n- Olive Oil: 1 tbsp\n- Protein: 50g, Carbs: 60g, Fats: 15g\n\nMEAL 4 (Pre-Workout - 4:00 PM):\n- Banana: 1\n- Peanut Butter: 2 tbsp\n- Protein: 10g, Carbs: 40g, Fats: 16g\n\nMEAL 5 (Post-Workout - 6:30 PM):\n- Whey Protein Shake: 1 scoop\n- Sweet Potato: 200g\n- Protein: 30g, Carbs: 50g, Fats: 2g\n\nMEAL 6 (Dinner - 8:30 PM):\n- Grilled Fish (Salmon): 200g\n- Quinoa: 100g\n- Steamed Broccoli: 200g\n- Protein: 45g, Carbs: 40g, Fats: 20g\n\nTOTAL DAILY:\nProtein: 185g\nCarbs: 285g\nFats: 83g\nCalories: ~2,550\n\nNOTES:\n- Drink 3-4 liters of water daily\n- Take multivitamin supplement\n- Adjust portions based on progress"
+}
+
+### 12. UPDATE MEMBER PROGRESS
+PUT http://localhost:3000/api/trainer/members/MEMBER_ID_HERE/progress
+Authorization: Bearer YOUR_TRAINER_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "weight": 75.5,
+  "body_fat": 18.2,
+  "muscle_mass": 35.8,
+  "notes": "Great progress this week! Weight down by 0.8kg, body fat decreased by 1.2%. Keep following the diet plan and increasing weights gradually."
+}
+
+### 13. RECORD MEMBER ATTENDANCE
+POST http://localhost:3000/api/trainer/members/MEMBER_ID_HERE/attendance
+Authorization: Bearer YOUR_TRAINER_ACCESS_TOKEN
+Content-Type: application/json
+
+{
+  "status": "present"
+}
+
+# Valid status values: "present", "absent", "leave"
+
+# ==================================================
+# HEALTH CHECK ENDPOINTS
+# ==================================================
+
+### 14. API ROOT
+GET http://localhost:3000/
+
+### 15. HEALTH CHECK
+GET http://localhost:3000/health
+
+# ==================================================
+# NOTES
+# ==================================================
+# 
+# 1. Replace YOUR_MEMBER_ACCESS_TOKEN with actual token from login/signup
+# 2. Replace YOUR_TRAINER_ACCESS_TOKEN with actual token from trainer login
+# 3. Replace MEMBER_ID_HERE with actual member ID from database
+# 4. Tokens expire after 15 minutes (configurable in .env)
+# 5. Use refresh tokens to get new access tokens
+# 
+# ==================================================

@@ -1,0 +1,121 @@
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ========================================
+// MEMBER MODEL
+// ========================================
+model Member {
+  member_id   String   @id @default(uuid())
+  name        String
+  email       String   @unique
+  password    String
+  age         Int
+  gender      String
+  phone       String
+  join_date   DateTime @default(now())
+  status      String   @default("active") // active or inactive
+  
+  // Relations
+  workoutPlans WorkoutPlan[]
+  dietPlans    DietPlan[]
+  attendances  Attendance[]
+  progress     Progress[]
+  
+  @@map("members")
+}
+
+// ========================================
+// TRAINER MODEL
+// ========================================
+model Trainer {
+  trainer_id     String   @id @default(uuid())
+  name           String
+  email          String   @unique
+  password       String
+  specialization String
+  
+  // Relations
+  workoutPlans WorkoutPlan[]
+  dietPlans    DietPlan[]
+  progress     Progress[]
+  
+  @@map("trainers")
+}
+
+// ========================================
+// WORKOUT PLAN MODEL
+// ========================================
+model WorkoutPlan {
+  plan_id      String   @id @default(uuid())
+  member_id    String
+  trainer_id   String
+  plan_details String   @db.Text
+  created_at   DateTime @default(now())
+  
+  // Relations
+  member  Member  @relation(fields: [member_id], references: [member_id], onDelete: Cascade)
+  trainer Trainer @relation(fields: [trainer_id], references: [trainer_id], onDelete: Cascade)
+  
+  @@map("workout_plans")
+}
+
+// ========================================
+// DIET PLAN MODEL
+// ========================================
+model DietPlan {
+  diet_id      String   @id @default(uuid())
+  member_id    String
+  trainer_id   String
+  diet_details String   @db.Text
+  created_at   DateTime @default(now())
+  
+  // Relations
+  member  Member  @relation(fields: [member_id], references: [member_id], onDelete: Cascade)
+  trainer Trainer @relation(fields: [trainer_id], references: [trainer_id], onDelete: Cascade)
+  
+  @@map("diet_plans")
+}
+
+// ========================================
+// ATTENDANCE MODEL
+// ========================================
+model Attendance {
+  attendance_id String   @id @default(uuid())
+  member_id     String
+  date          DateTime @default(now())
+  status        String   // present, absent, leave
+  
+  // Relations
+  member Member @relation(fields: [member_id], references: [member_id], onDelete: Cascade)
+  
+  @@map("attendances")
+}
+
+// ========================================
+// PROGRESS MODEL
+// ========================================
+model Progress {
+  progress_id String   @id @default(uuid())
+  member_id   String
+  trainer_id  String
+  weight      Float
+  body_fat    Float
+  muscle_mass Float
+  notes       String?  @db.Text
+  updated_at  DateTime @default(now())
+  
+  // Relations
+  member  Member  @relation(fields: [member_id], references: [member_id], onDelete: Cascade)
+  trainer Trainer @relation(fields: [trainer_id], references: [trainer_id], onDelete: Cascade)
+  
+  @@map("progress")
+}
