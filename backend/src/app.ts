@@ -23,7 +23,7 @@ app.use(express.urlencoded({ extended: true }));
 // ========================================
 // HEALTH CHECK
 // ========================================
-app.get('/', (req: Request, res: Response) => {
+app.get('/', (_req: Request, res: Response) => {
   res.status(200).json({
     success: true,
     message: 'Gym Management System API is running',
@@ -32,7 +32,7 @@ app.get('/', (req: Request, res: Response) => {
   });
 });
 
-app.get('/health', (req: Request, res: Response) => {
+app.get('/health', (_req: Request, res: Response) => {
   res.status(200).json({
     success: true,
     status: 'healthy',
@@ -50,7 +50,7 @@ app.use('/api/trainer', trainerRoutes);
 // ========================================
 // 404 HANDLER
 // ========================================
-app.use((req: Request, res: Response) => {
+app.use((_req: Request, res: Response) => {
   res.status(404).json({
     success: false,
     message: 'Route not found'
@@ -60,7 +60,7 @@ app.use((req: Request, res: Response) => {
 // ========================================
 // ERROR HANDLER
 // ========================================
-app.use((err: any, req: Request, res: Response, next: any) => {
+app.use((err: any, _req: Request, res: Response, _next: any) => {
   console.error('Error:', err);
   res.status(err.status || 500).json({
     success: false,
