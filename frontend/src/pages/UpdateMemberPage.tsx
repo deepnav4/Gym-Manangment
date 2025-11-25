@@ -201,20 +201,20 @@ const UpdateMemberPage = () => {
     }
 
     return (
-        <div className="min-h-screen bg-slate-50/50 p-6 lg:p-8 pt-24">
-            <div className="max-w-5xl mx-auto space-y-6">
+        <div className="min-h-screen bg-slate-50/50 p-4 sm:p-6 lg:p-8 pt-20 sm:pt-24">
+            <div className="max-w-5xl mx-auto space-y-4 sm:space-y-6">
 
                 {/* Header with Back Button */}
-                <div className="flex items-center gap-4">
+                <div className="flex items-center gap-3 sm:gap-4">
                     <button
                         onClick={() => navigate('/dashboard/trainer')}
-                        className="p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition-colors"
+                        className="p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition-colors shrink-0"
                     >
                         <ArrowLeft className="w-5 h-5 text-slate-600" />
                     </button>
-                    <div>
-                        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Update Member Details</h1>
-                        <p className="text-slate-500">Manage plans and progress for {member.name}</p>
+                    <div className="min-w-0">
+                        <h1 className="text-xl sm:text-2xl lg:text-3xl font-bold text-slate-900 tracking-tight">Update Member Details</h1>
+                        <p className="text-sm sm:text-base text-slate-500 truncate">Manage plans and progress for {member.name}</p>
                     </div>
                 </div>
 
@@ -241,32 +241,32 @@ const UpdateMemberPage = () => {
                 )}
 
                 {/* Member Info Card */}
-                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
-                    <div className="flex items-start gap-4">
-                        <div className="w-16 h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xl">
+                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row items-start gap-4">
+                        <div className="w-12 h-12 sm:w-16 sm:h-16 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-lg sm:text-xl shrink-0">
                             {member.name.split(' ').map(n => n[0]).join('')}
                         </div>
-                        <div className="flex-1 grid grid-cols-1 md:grid-cols-2 gap-4">
-                            <div className="flex items-center gap-2">
-                                <User className="w-4 h-4 text-slate-400" />
-                                <span className="text-slate-900 font-semibold">{member.name}</span>
+                        <div className="flex-1 w-full grid grid-cols-1 sm:grid-cols-2 gap-3 sm:gap-4">
+                            <div className="flex items-center gap-2 min-w-0">
+                                <User className="w-4 h-4 text-slate-400 shrink-0" />
+                                <span className="text-slate-900 font-semibold text-sm sm:text-base truncate">{member.name}</span>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <Mail className="w-4 h-4 text-slate-400" />
-                                <span className="text-slate-600 text-sm">{member.email}</span>
+                            <div className="flex items-center gap-2 min-w-0">
+                                <Mail className="w-4 h-4 text-slate-400 shrink-0" />
+                                <span className="text-slate-600 text-xs sm:text-sm truncate">{member.email}</span>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <Phone className="w-4 h-4 text-slate-400" />
-                                <span className="text-slate-600 text-sm">{member.phone || 'N/A'}</span>
+                            <div className="flex items-center gap-2 min-w-0">
+                                <Phone className="w-4 h-4 text-slate-400 shrink-0" />
+                                <span className="text-slate-600 text-xs sm:text-sm">{member.phone || 'N/A'}</span>
                             </div>
-                            <div className="flex items-center gap-2">
-                                <Calendar className="w-4 h-4 text-slate-400" />
-                                <span className="text-slate-600 text-sm">
+                            <div className="flex items-center gap-2 min-w-0">
+                                <Calendar className="w-4 h-4 text-slate-400 shrink-0" />
+                                <span className="text-slate-600 text-xs sm:text-sm">
                                     Joined {new Date(member.join_date).toLocaleDateString()}
                                 </span>
                             </div>
                         </div>
-                        <div className={`px-3 py-1 rounded-full text-xs font-medium ${
+                        <div className={`px-3 py-1 rounded-full text-xs font-medium shrink-0 ${
                             member.status === 'active' 
                                 ? 'bg-emerald-100 text-emerald-700'
                                 : 'bg-slate-100 text-slate-700'
@@ -278,7 +278,7 @@ const UpdateMemberPage = () => {
 
                 {/* Tabs */}
                 <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-                    <div className="border-b border-slate-100 flex overflow-x-auto">
+                    <div className="border-b border-slate-100 flex overflow-x-auto scrollbar-hide">
                         {[
                             { id: 'workout', label: 'Workout Plan', icon: Dumbbell },
                             { id: 'diet', label: 'Diet Plan', icon: Utensils },
@@ -288,14 +288,15 @@ const UpdateMemberPage = () => {
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id as any)}
-                                className={`flex-1 flex items-center justify-center gap-2 px-6 py-4 text-sm font-medium transition-colors relative ${
+                                className={`flex-1 min-w-[140px] flex items-center justify-center gap-2 px-4 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium transition-colors relative whitespace-nowrap ${
                                     activeTab === tab.id
                                         ? 'text-slate-900 bg-slate-50'
                                         : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50/50'
                                 }`}
                             >
-                                <tab.icon className="w-4 h-4" />
-                                {tab.label}
+                                <tab.icon className="w-4 h-4 shrink-0" />
+                                <span className="hidden sm:inline">{tab.label}</span>
+                                <span className="sm:hidden">{tab.label.split(' ')[0]}</span>
                                 {activeTab === tab.id && (
                                     <motion.div
                                         layoutId="activeTab"
@@ -306,13 +307,13 @@ const UpdateMemberPage = () => {
                         ))}
                     </div>
 
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6">
                         {/* Workout Tab */}
                         {activeTab === 'workout' && (
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="space-y-6"
+                                className="space-y-4 sm:space-y-6"
                             >
                                 <div>
                                     <label className="block text-sm font-medium text-slate-900 mb-2">
@@ -372,7 +373,7 @@ const UpdateMemberPage = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="space-y-6"
+                                className="space-y-4 sm:space-y-6"
                             >
                                 <div>
                                     <label className="block text-sm font-medium text-slate-900 mb-2">
@@ -432,9 +433,9 @@ const UpdateMemberPage = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="space-y-6"
+                                className="space-y-4 sm:space-y-6"
                             >
-                                <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
                                     <div>
                                         <label className="block text-sm font-medium text-slate-900 mb-2">
                                             Weight (kg)
@@ -514,13 +515,13 @@ const UpdateMemberPage = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="space-y-6"
+                                className="space-y-4 sm:space-y-6"
                             >
                                 <div>
                                     <label className="block text-sm font-medium text-slate-900 mb-4">
                                         Mark Attendance for Today
                                     </label>
-                                    <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+                                    <div className="grid grid-cols-1 sm:grid-cols-3 gap-3 sm:gap-4">
                                         {[
                                             { value: 'present', label: 'Present', color: 'emerald', icon: CheckCircle2 },
                                             { value: 'absent', label: 'Absent', color: 'red', icon: X },
@@ -529,18 +530,18 @@ const UpdateMemberPage = () => {
                                             <button
                                                 key={option.value}
                                                 onClick={() => setAttendanceStatus(option.value as any)}
-                                                className={`p-6 rounded-xl border-2 transition-all ${
+                                                className={`p-4 sm:p-6 rounded-xl border-2 transition-all ${
                                                     attendanceStatus === option.value
                                                         ? `border-${option.color}-500 bg-${option.color}-50`
                                                         : 'border-slate-200 bg-white hover:border-slate-300'
                                                 }`}
                                             >
-                                                <option.icon className={`w-8 h-8 mx-auto mb-3 ${
+                                                <option.icon className={`w-6 h-6 sm:w-8 sm:h-8 mx-auto mb-2 sm:mb-3 ${
                                                     attendanceStatus === option.value
                                                         ? `text-${option.color}-600`
                                                         : 'text-slate-400'
                                                 }`} />
-                                                <div className={`font-semibold ${
+                                                <div className={`text-sm sm:text-base font-semibold ${
                                                     attendanceStatus === option.value
                                                         ? `text-${option.color}-900`
                                                         : 'text-slate-900'
@@ -552,8 +553,8 @@ const UpdateMemberPage = () => {
                                     </div>
                                 </div>
 
-                                <div className="bg-blue-50 border border-blue-200 rounded-xl p-4">
-                                    <p className="text-blue-800 text-sm">
+                                <div className="bg-blue-50 border border-blue-200 rounded-xl p-3 sm:p-4">
+                                    <p className="text-blue-800 text-xs sm:text-sm">
                                         <strong>Note:</strong> Attendance can only be marked once per day per member.
                                     </p>
                                 </div>
@@ -561,7 +562,7 @@ const UpdateMemberPage = () => {
                                 <button
                                     onClick={handleAttendanceSubmit}
                                     disabled={submitting}
-                                    className="w-full bg-slate-900 text-white px-6 py-3 rounded-xl font-medium hover:bg-slate-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
+                                    className="w-full bg-slate-900 text-white px-6 py-3 rounded-xl text-sm sm:text-base font-medium hover:bg-slate-800 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex items-center justify-center gap-2"
                                 >
                                     {submitting ? (
                                         <>

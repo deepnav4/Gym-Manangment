@@ -184,26 +184,26 @@ const MemberDetailsPage = () => {
     ];
 
     return (
-        <div className="min-h-screen bg-slate-50/50 p-6 lg:p-8 pt-24">
-            <div className="max-w-7xl mx-auto space-y-6">
+        <div className="min-h-screen bg-slate-50/50 p-4 sm:p-6 lg:p-8 pt-20 sm:pt-24">
+            <div className="max-w-7xl mx-auto space-y-4 sm:space-y-6">
 
                 {/* Header */}
-                <div className="flex items-center justify-between">
-                    <div className="flex items-center gap-4">
+                <div className="flex flex-col sm:flex-row items-start sm:items-center justify-between gap-4">
+                    <div className="flex items-start gap-3 sm:gap-4 w-full sm:w-auto">
                         <button
                             onClick={() => navigate('/dashboard/trainer')}
-                            className="p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition-colors"
+                            className="p-2 rounded-xl bg-white border border-slate-200 hover:bg-slate-50 transition-colors shrink-0"
                         >
                             <ArrowLeft className="w-5 h-5 text-slate-600" />
                         </button>
-                        <div>
-                            <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Member Details</h1>
-                            <p className="text-slate-500">Complete overview and history for {member.name}</p>
+                        <div className="flex-1">
+                            <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Member Details</h1>
+                            <p className="text-sm sm:text-base text-slate-500">Complete overview and history for {member.name}</p>
                         </div>
                     </div>
                     <button
                         onClick={() => navigate(`/update-member/${memberId}`)}
-                        className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white rounded-xl hover:bg-slate-800 transition-colors"
+                        className="flex items-center gap-2 px-4 py-2 bg-slate-900 text-white text-sm rounded-xl hover:bg-slate-800 transition-colors w-full sm:w-auto justify-center"
                     >
                         <Edit2 className="w-4 h-4" />
                         Update Plans
@@ -211,34 +211,34 @@ const MemberDetailsPage = () => {
                 </div>
 
                 {/* Member Info Card */}
-                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6">
-                    <div className="flex items-start gap-6">
-                        <div className="w-20 h-20 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-2xl shrink-0">
+                <div className="bg-white rounded-2xl border border-slate-100 shadow-sm p-4 sm:p-6">
+                    <div className="flex flex-col sm:flex-row items-start gap-4 sm:gap-6">
+                        <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-indigo-100 flex items-center justify-center text-indigo-700 font-bold text-xl sm:text-2xl shrink-0">
                             {member.name.split(' ').map((n: string) => n[0]).join('')}
                         </div>
-                        <div className="flex-1 grid grid-cols-1 md:grid-cols-3 gap-6">
+                        <div className="flex-1 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6 w-full">
                             <div>
-                                <div className="flex items-center gap-2 text-slate-500 text-sm mb-1">
-                                    <User className="w-4 h-4" />
+                                <div className="flex items-center gap-2 text-slate-500 text-xs sm:text-sm mb-1">
+                                    <User className="w-3 h-3 sm:w-4 sm:h-4" />
                                     <span>Member Info</span>
                                 </div>
-                                <p className="font-bold text-slate-900 text-lg">{member.name}</p>
-                                <p className="text-sm text-slate-600">{member.age} years • {member.gender}</p>
+                                <p className="font-bold text-slate-900 text-base sm:text-lg">{member.name}</p>
+                                <p className="text-xs sm:text-sm text-slate-600">{member.age} years • {member.gender}</p>
                             </div>
                             <div>
-                                <div className="flex items-center gap-2 text-slate-500 text-sm mb-1">
-                                    <Mail className="w-4 h-4" />
+                                <div className="flex items-center gap-2 text-slate-500 text-xs sm:text-sm mb-1">
+                                    <Mail className="w-3 h-3 sm:w-4 sm:h-4" />
                                     <span>Contact</span>
                                 </div>
-                                <p className="text-slate-900 text-sm">{member.email}</p>
-                                <p className="text-slate-600 text-sm">{member.phone}</p>
+                                <p className="text-slate-900 text-xs sm:text-sm break-all">{member.email}</p>
+                                <p className="text-slate-600 text-xs sm:text-sm">{member.phone}</p>
                             </div>
                             <div>
-                                <div className="flex items-center gap-2 text-slate-500 text-sm mb-1">
-                                    <Calendar className="w-4 h-4" />
+                                <div className="flex items-center gap-2 text-slate-500 text-xs sm:text-sm mb-1">
+                                    <Calendar className="w-3 h-3 sm:w-4 sm:h-4" />
                                     <span>Member Since</span>
                                 </div>
-                                <p className="text-slate-900 text-sm">
+                                <p className="text-slate-900 text-xs sm:text-sm">
                                     {new Date(member.join_date).toLocaleDateString('en-US', { 
                                         month: 'long', 
                                         day: 'numeric', 
@@ -259,19 +259,19 @@ const MemberDetailsPage = () => {
                 </div>
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-4 gap-6">
+                <div className="grid grid-cols-2 sm:grid-cols-2 md:grid-cols-4 gap-3 sm:gap-4 md:gap-6">
                     <motion.div
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
-                        className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"
+                        className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-100 shadow-sm"
                     >
-                        <div className="flex items-center gap-3 mb-3">
-                            <div className="w-10 h-10 rounded-xl bg-indigo-100 flex items-center justify-center">
-                                <Dumbbell className="w-5 h-5 text-indigo-600" />
+                        <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-indigo-100 flex items-center justify-center">
+                                <Dumbbell className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
                             </div>
                             <div>
-                                <p className="text-2xl font-bold text-slate-900">{totalWorkouts}</p>
-                                <p className="text-xs text-slate-500">Workout Plans</p>
+                                <p className="text-lg sm:text-2xl font-bold text-slate-900">{totalWorkouts}</p>
+                                <p className="text-[10px] sm:text-xs text-slate-500">Workout Plans</p>
                             </div>
                         </div>
                     </motion.div>
@@ -280,15 +280,15 @@ const MemberDetailsPage = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.1 }}
-                        className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"
+                        className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-100 shadow-sm"
                     >
-                        <div className="flex items-center gap-3 mb-3">
-                            <div className="w-10 h-10 rounded-xl bg-emerald-100 flex items-center justify-center">
-                                <Utensils className="w-5 h-5 text-emerald-600" />
+                        <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-emerald-100 flex items-center justify-center">
+                                <Utensils className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" />
                             </div>
                             <div>
-                                <p className="text-2xl font-bold text-slate-900">{totalDiets}</p>
-                                <p className="text-xs text-slate-500">Diet Plans</p>
+                                <p className="text-lg sm:text-2xl font-bold text-slate-900">{totalDiets}</p>
+                                <p className="text-[10px] sm:text-xs text-slate-500">Diet Plans</p>
                             </div>
                         </div>
                     </motion.div>
@@ -297,15 +297,15 @@ const MemberDetailsPage = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.2 }}
-                        className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"
+                        className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-100 shadow-sm"
                     >
-                        <div className="flex items-center gap-3 mb-3">
-                            <div className="w-10 h-10 rounded-xl bg-blue-100 flex items-center justify-center">
-                                <TrendingUp className="w-5 h-5 text-blue-600" />
+                        <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-blue-100 flex items-center justify-center">
+                                <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                             </div>
                             <div>
-                                <p className="text-2xl font-bold text-slate-900">{totalProgress}</p>
-                                <p className="text-xs text-slate-500">Progress Records</p>
+                                <p className="text-lg sm:text-2xl font-bold text-slate-900">{totalProgress}</p>
+                                <p className="text-[10px] sm:text-xs text-slate-500">Progress Records</p>
                             </div>
                         </div>
                     </motion.div>
@@ -314,15 +314,15 @@ const MemberDetailsPage = () => {
                         initial={{ opacity: 0, y: 20 }}
                         animate={{ opacity: 1, y: 0 }}
                         transition={{ delay: 0.3 }}
-                        className="bg-white p-6 rounded-2xl border border-slate-100 shadow-sm"
+                        className="bg-white p-4 sm:p-6 rounded-2xl border border-slate-100 shadow-sm"
                     >
-                        <div className="flex items-center gap-3 mb-3">
-                            <div className="w-10 h-10 rounded-xl bg-amber-100 flex items-center justify-center">
-                                <CalendarCheck className="w-5 h-5 text-amber-600" />
+                        <div className="flex items-center gap-2 sm:gap-3 mb-2 sm:mb-3">
+                            <div className="w-8 h-8 sm:w-10 sm:h-10 rounded-xl bg-amber-100 flex items-center justify-center">
+                                <CalendarCheck className="w-4 h-4 sm:w-5 sm:h-5 text-amber-600" />
                             </div>
                             <div>
-                                <p className="text-2xl font-bold text-slate-900">{attendanceRate}%</p>
-                                <p className="text-xs text-slate-500">Attendance Rate</p>
+                                <p className="text-lg sm:text-2xl font-bold text-slate-900">{attendanceRate}%</p>
+                                <p className="text-[10px] sm:text-xs text-slate-500">Attendance Rate</p>
                             </div>
                         </div>
                     </motion.div>
@@ -330,7 +330,7 @@ const MemberDetailsPage = () => {
 
                 {/* Tabs */}
                 <div className="bg-white rounded-2xl border border-slate-100 shadow-sm overflow-hidden">
-                    <div className="border-b border-slate-100 flex overflow-x-auto">
+                    <div className="border-b border-slate-100 flex overflow-x-auto scrollbar-hide">
                         {[
                             { id: 'overview', label: 'Overview', icon: Activity },
                             { id: 'progress', label: 'Progress Analytics', icon: TrendingUp },
@@ -340,14 +340,15 @@ const MemberDetailsPage = () => {
                             <button
                                 key={tab.id}
                                 onClick={() => setActiveTab(tab.id as any)}
-                                className={`flex-1 flex items-center justify-center gap-2 px-6 py-4 text-sm font-medium transition-colors relative ${
+                                className={`flex-1 flex items-center justify-center gap-1.5 sm:gap-2 px-3 sm:px-6 py-3 sm:py-4 text-xs sm:text-sm font-medium transition-colors relative whitespace-nowrap min-w-fit ${
                                     activeTab === tab.id
                                         ? 'text-slate-900 bg-slate-50'
                                         : 'text-slate-500 hover:text-slate-900 hover:bg-slate-50/50'
                                 }`}
                             >
-                                <tab.icon className="w-4 h-4" />
-                                {tab.label}
+                                <tab.icon className="w-3 h-3 sm:w-4 sm:h-4" />
+                                <span className="hidden xs:inline sm:inline">{tab.label}</span>
+                                <span className="xs:hidden">{tab.label.split(' ')[0]}</span>
                                 {activeTab === tab.id && (
                                     <motion.div
                                         layoutId="activeDetailTab"
@@ -358,19 +359,19 @@ const MemberDetailsPage = () => {
                         ))}
                     </div>
 
-                    <div className="p-6">
+                    <div className="p-4 sm:p-6">
                         {/* Overview Tab */}
                         {activeTab === 'overview' && (
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="space-y-6"
+                                className="space-y-4 sm:space-y-6"
                             >
-                                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                <div className="grid grid-cols-1 md:grid-cols-2 gap-4 sm:gap-6">
                                     {/* Latest Progress */}
-                                    <div className="bg-slate-50 rounded-xl p-6">
-                                        <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                            <TrendingUp className="w-5 h-5 text-blue-600" />
+                                    <div className="bg-slate-50 rounded-xl p-4 sm:p-6">
+                                        <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-3 sm:mb-4 flex items-center gap-2">
+                                            <TrendingUp className="w-4 h-4 sm:w-5 sm:h-5 text-blue-600" />
                                             Latest Measurements
                                         </h3>
                                         {latestProgress ? (
@@ -475,14 +476,14 @@ const MemberDetailsPage = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="space-y-8"
+                                className="space-y-6 sm:space-y-8"
                             >
                                 {progressChartData.length > 0 ? (
                                     <>
                                         {/* Weight Trend */}
                                         <div>
-                                            <h3 className="font-bold text-slate-900 mb-4">Weight Trend</h3>
-                                            <div className="h-[300px]">
+                                            <h3 className="font-bold text-slate-900 text-base sm:text-lg mb-3 sm:mb-4">Weight Trend</h3>
+                                            <div className="h-64 sm:h-[300px]">
                                                 <ResponsiveContainer width="100%" height="100%">
                                                     <AreaChart data={progressChartData}>
                                                         <defs>
@@ -503,8 +504,8 @@ const MemberDetailsPage = () => {
 
                                         {/* Body Composition */}
                                         <div>
-                                            <h3 className="font-bold text-slate-900 mb-4">Body Composition Progress</h3>
-                                            <div className="h-[300px]">
+                                            <h3 className="font-bold text-slate-900 text-base sm:text-lg mb-3 sm:mb-4">Body Composition Progress</h3>
+                                            <div className="h-64 sm:h-[300px]">
                                                 <ResponsiveContainer width="100%" height="100%">
                                                     <LineChart data={progressChartData}>
                                                         <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
@@ -520,24 +521,24 @@ const MemberDetailsPage = () => {
                                         </div>
 
                                         {/* Progress Summary */}
-                                        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
-                                            <div className="bg-linear-to-br from-indigo-50 to-blue-50 rounded-xl p-6 border border-indigo-100">
-                                                <p className="text-sm text-indigo-600 font-medium mb-2">Weight Change</p>
-                                                <p className="text-3xl font-bold text-indigo-900">
+                                        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-3 sm:gap-4">
+                                            <div className="bg-linear-to-br from-indigo-50 to-blue-50 rounded-xl p-4 sm:p-6 border border-indigo-100">
+                                                <p className="text-xs sm:text-sm text-indigo-600 font-medium mb-1 sm:mb-2">Weight Change</p>
+                                                <p className="text-2xl sm:text-3xl font-bold text-indigo-900">
                                                     {parseFloat(weightChange) > 0 ? '+' : ''}{weightChange} kg
                                                 </p>
-                                                <p className="text-xs text-indigo-600 mt-2">Since first record</p>
+                                                <p className="text-[10px] sm:text-xs text-indigo-600 mt-1 sm:mt-2">Since first record</p>
                                             </div>
-                                            <div className="bg-linear-to-br from-red-50 to-orange-50 rounded-xl p-6 border border-red-100">
-                                                <p className="text-sm text-red-600 font-medium mb-2">Body Fat Change</p>
-                                                <p className="text-3xl font-bold text-red-900">
+                                            <div className="bg-linear-to-br from-red-50 to-orange-50 rounded-xl p-4 sm:p-6 border border-red-100">
+                                                <p className="text-xs sm:text-sm text-red-600 font-medium mb-1 sm:mb-2">Body Fat Change</p>
+                                                <p className="text-2xl sm:text-3xl font-bold text-red-900">
                                                     {parseFloat(bodyFatChange) > 0 ? '+' : ''}{bodyFatChange}%
                                                 </p>
-                                                <p className="text-xs text-red-600 mt-2">Since first record</p>
+                                                <p className="text-[10px] sm:text-xs text-red-600 mt-1 sm:mt-2">Since first record</p>
                                             </div>
-                                            <div className="bg-linear-to-br from-emerald-50 to-teal-50 rounded-xl p-6 border border-emerald-100">
-                                                <p className="text-sm text-emerald-600 font-medium mb-2">Muscle Gain</p>
-                                                <p className="text-3xl font-bold text-emerald-900">
+                                            <div className="bg-linear-to-br from-emerald-50 to-teal-50 rounded-xl p-4 sm:p-6 border border-emerald-100 sm:col-span-2 lg:col-span-1">
+                                                <p className="text-xs sm:text-sm text-emerald-600 font-medium mb-1 sm:mb-2">Muscle Gain</p>
+                                                <p className="text-2xl sm:text-3xl font-bold text-emerald-900">
                                                     +{(latestProgress.muscle_mass - firstProgress.muscle_mass).toFixed(1)} kg
                                                 </p>
                                                 <p className="text-xs text-emerald-600 mt-2">Since first record</p>
@@ -559,12 +560,12 @@ const MemberDetailsPage = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="space-y-6"
+                                className="space-y-4 sm:space-y-6"
                             >
                                 {/* Workout Plans History */}
                                 <div>
-                                    <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                        <Dumbbell className="w-5 h-5 text-indigo-600" />
+                                    <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-3 sm:mb-4 flex items-center gap-2">
+                                        <Dumbbell className="w-4 h-4 sm:w-5 sm:h-5 text-indigo-600" />
                                         Workout Plans History
                                     </h3>
                                     <div className="space-y-3">
@@ -602,8 +603,8 @@ const MemberDetailsPage = () => {
 
                                 {/* Diet Plans History */}
                                 <div>
-                                    <h3 className="font-bold text-slate-900 mb-4 flex items-center gap-2">
-                                        <Utensils className="w-5 h-5 text-emerald-600" />
+                                    <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-3 sm:mb-4 flex items-center gap-2">
+                                        <Utensils className="w-4 h-4 sm:w-5 sm:h-5 text-emerald-600" />
                                         Diet Plans History
                                     </h3>
                                     <div className="space-y-3">
@@ -646,15 +647,15 @@ const MemberDetailsPage = () => {
                             <motion.div
                                 initial={{ opacity: 0, y: 10 }}
                                 animate={{ opacity: 1, y: 0 }}
-                                className="space-y-6"
+                                className="space-y-4 sm:space-y-6"
                             >
                                 {member.attendances?.length > 0 ? (
                                     <>
-                                        <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                                        <div className="grid grid-cols-1 lg:grid-cols-2 gap-4 sm:gap-6">
                                             {/* Attendance Pie Chart */}
                                             <div>
-                                                <h3 className="font-bold text-slate-900 mb-4">Attendance Distribution</h3>
-                                                <div className="h-[300px]">
+                                                <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-3 sm:mb-4">Attendance Distribution</h3>
+                                                <div className="h-64 sm:h-[300px]">
                                                     <ResponsiveContainer width="100%" height="100%">
                                                         <PieChart>
                                                             <Pie
@@ -679,8 +680,8 @@ const MemberDetailsPage = () => {
 
                                             {/* Attendance Stats */}
                                             <div>
-                                                <h3 className="font-bold text-slate-900 mb-4">Statistics</h3>
-                                                <div className="space-y-4">
+                                                <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-3 sm:mb-4">Statistics</h3>
+                                                <div className="space-y-3 sm:space-y-4">
                                                     <div className="bg-emerald-50 rounded-xl p-4 border border-emerald-100">
                                                         <div className="flex items-center justify-between">
                                                             <span className="text-emerald-700 font-medium">Present Days</span>
@@ -719,8 +720,8 @@ const MemberDetailsPage = () => {
 
                                         {/* Attendance History */}
                                         <div>
-                                            <h3 className="font-bold text-slate-900 mb-4">Recent Attendance</h3>
-                                            <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
+                                            <h3 className="font-bold text-slate-900 text-sm sm:text-base mb-3 sm:mb-4">Recent Attendance</h3>
+                                            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-5 gap-2 sm:gap-3">
                                                 {member.attendances.map((att: any, index: number) => (
                                                     <div
                                                         key={index}

@@ -140,37 +140,37 @@ const MemberDashboard = () => {
     const chartData = getChartData();
 
     return (
-        <div className="min-h-screen bg-slate-50/50 p-6 lg:p-8 pt-24">
-            <div className="max-w-7xl mx-auto space-y-8">
+        <div className="min-h-screen bg-slate-50/50 p-4 sm:p-6 lg:p-8 pt-20 sm:pt-24">
+            <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
 
                 {/* Error Message */}
                 {error && (
                     <div className="bg-red-50 border border-red-200 rounded-xl p-4 flex items-center gap-3">
-                        <AlertCircle className="w-5 h-5 text-red-600" />
+                        <AlertCircle className="w-5 h-5 text-red-600 shrink-0" />
                         <p className="text-red-800 text-sm">{error}</p>
                     </div>
                 )}
 
                 {/* Header */}
-                <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+                <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">
+                        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">
                             Hello, {profile?.name || 'Member'}
                         </h1>
-                        <p className="text-slate-500">Here's your daily fitness breakdown.</p>
+                        <p className="text-sm sm:text-base text-slate-500">Here's your daily fitness breakdown.</p>
                     </div>
-                    <div className="flex items-center gap-3 bg-white p-2 rounded-full border border-slate-100 shadow-sm">
-                        <div className="px-4 py-1.5 bg-slate-900 text-white text-sm font-bold rounded-full">
+                    <div className="flex items-center gap-2 sm:gap-3 bg-white p-2 rounded-full border border-slate-100 shadow-sm w-full sm:w-auto">
+                        <div className="px-3 sm:px-4 py-1.5 bg-slate-900 text-white text-xs sm:text-sm font-bold rounded-full">
                             Member
                         </div>
-                        <span className="text-sm text-slate-500 pr-2">
+                        <span className="text-xs sm:text-sm text-slate-500 pr-2 truncate flex-1 sm:flex-none">
                             {profile?.email || 'N/A'}
                         </span>
                     </div>
                 </div>
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6">
                     {[
                         { label: 'Current Weight', value: stats.currentWeight, change: stats.weightChange, icon: Activity, color: 'text-indigo-600', bg: 'bg-indigo-50' },
                         { label: 'Attendance', value: stats.attendanceRate, change: stats.attendanceChange, icon: Calendar, color: 'text-emerald-600', bg: 'bg-emerald-50' },

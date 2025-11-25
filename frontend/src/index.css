@@ -9,6 +9,16 @@ body {
     font-family: "Manrope", sans-serif;
 }
 
+/* Hide scrollbar for tabs */
+.scrollbar-hide {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+    display: none;
+}
+
 /* Infinite Scroll Animation */
 @keyframes scroll {
     0% {

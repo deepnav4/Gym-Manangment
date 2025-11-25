@@ -64,8 +64,8 @@ const TrainerDashboard = () => {
     const stats = calculateStats();
 
     return (
-        <div className="min-h-screen bg-slate-50/50 p-6 lg:p-8 pt-24">
-            <div className="max-w-7xl mx-auto space-y-8">
+        <div className="min-h-screen bg-slate-50/50 p-4 sm:p-6 lg:p-8 pt-20 sm:pt-24">
+            <div className="max-w-7xl mx-auto space-y-6 sm:space-y-8">
 
                 {/* Error/Success Messages */}
                 {error && (
@@ -78,13 +78,13 @@ const TrainerDashboard = () => {
                 {/* Header */}
                 <div className="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
                     <div>
-                        <h1 className="text-3xl font-bold text-slate-900 tracking-tight">Trainer Dashboard</h1>
-                        <p className="text-slate-500">Manage your clients and their progress.</p>
+                        <h1 className="text-2xl sm:text-3xl font-bold text-slate-900 tracking-tight">Trainer Dashboard</h1>
+                        <p className="text-sm sm:text-base text-slate-500">Manage your clients and their progress.</p>
                     </div>
                 </div>
 
                 {/* Stats Grid */}
-                <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 sm:gap-6">
                     {[
                         { label: 'Total Members', value: String(stats.totalMembers), icon: Users, color: 'text-indigo-600', bg: 'bg-indigo-50' },
                         { label: 'Active Members', value: String(stats.activeToday), icon: UserCheck, color: 'text-emerald-600', bg: 'bg-emerald-50' },
