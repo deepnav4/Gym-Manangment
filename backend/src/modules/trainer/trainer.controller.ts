@@ -12,7 +12,7 @@ import {
 // ========================================
 // GET ALL MEMBERS CONTROLLER
 // ========================================
-export const getMembers = async (req: AuthRequest, res: Response): Promise<void> => {
+export const getMembers = async (_req: AuthRequest, res: Response): Promise<void> => {
   try {
     const members = await getAllMembers();
 
