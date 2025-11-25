@@ -5,7 +5,6 @@ import {
     ArrowLeft,
     User,
     Mail,
-    Phone,
     Calendar,
     Activity,
     TrendingUp,
@@ -14,7 +13,6 @@ import {
     CalendarCheck,
     Clock,
     AlertCircle,
-    CheckCircle2,
     Edit2
 } from 'lucide-react';
 import {
@@ -22,8 +20,6 @@ import {
     Line,
     AreaChart,
     Area,
-    BarChart,
-    Bar,
     XAxis,
     YAxis,
     CartesianGrid,
@@ -35,7 +31,6 @@ import {
     Cell
 } from 'recharts';
 import { getAllMembers } from '../services/trainerService';
-import type { Member } from '../services/memberService';
 
 const MemberDetailsPage = () => {
     const { memberId } = useParams();
