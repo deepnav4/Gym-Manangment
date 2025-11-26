@@ -160,8 +160,8 @@ const HowItWorksPage = () => {
                             key={index}
                             className="bg-white rounded-2xl border border-slate-100 shadow-sm p-6 text-center"
                         >
-                            <div className="w-12 h-12 rounded-xl bg-slate-900 flex items-center justify-center mx-auto mb-4">
-                                <feature.icon className="w-6 h-6 text-white" />
+                            <div className="w-12 h-12 rounded-xl bg-transparent flex items-center justify-center mx-auto mb-4">
+                                <feature.icon className="w-6 h-6 text-black" />
                             </div>
                             <h3 className="font-bold text-slate-900 mb-2">{feature.title}</h3>
                             <p className="text-sm text-slate-600">{feature.description}</p>
