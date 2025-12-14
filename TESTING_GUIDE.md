@@ -1,5 +1,6 @@
 # 🎯 START HERE - Complete Testing Guide
 postgresql://neondb_owner:npg_txXsCS5ayVi9@ep-twilight-haze-ahblr6qw-pooler.c-3.us-east-1.aws.neon.tech/neondb?sslmode=require&channel_binding=require
+https://gym-management-backend-8vaj.onrender.com
 ## ⚡ Quick Start (2 Terminals)
 
 ### Terminal 1 - Backend
