@@ -52,7 +52,7 @@ const MemberDetailsPage = () => {
             // For now, we'll fetch from the members list
             // TODO: Create a dedicated API endpoint for detailed member info
             const response = await getAllMembers();
-            const foundMember = response.data.find(m => String(m.member_id) === memberId);
+            const foundMember = response.data.find((m: any) => String(m.member_id) === memberId);
             
             if (!foundMember) {
                 setError('Member not found');
