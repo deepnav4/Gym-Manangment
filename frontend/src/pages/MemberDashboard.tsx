@@ -118,11 +118,16 @@ const MemberDashboard = () => {
 
     // Transform progress data for chart
     const getChartData = () => {
-        return progressRecords.map((record, index) => ({
-            date: `Record ${index + 1}`,
-            weight: record.weight,
-            bodyFat: record.body_fat
-        }));
+        return progressRecords.map((record) => {
+            const dateObj = new Date(record.updated_at);
+            const formattedDate = dateObj.toLocaleDateString('en-US', { month: 'short', day: 'numeric' });
+            return {
+                date: formattedDate,
+                weight: record.weight,
+                bodyFat: record.body_fat,
+                muscleMass: record.muscle_mass
+            };
+        });
     };
 
     if (loading) {
@@ -228,6 +233,10 @@ const MemberDashboard = () => {
                                                     <stop offset="5%" stopColor="#4F46E5" stopOpacity={0.1} />
                                                     <stop offset="95%" stopColor="#4F46E5" stopOpacity={0} />
                                                 </linearGradient>
+                                                <linearGradient id="colorMuscle" x1="0" y1="0" x2="0" y2="1">
+                                                    <stop offset="5%" stopColor="#10B981" stopOpacity={0.1} />
+                                                    <stop offset="95%" stopColor="#10B981" stopOpacity={0} />
+                                                </linearGradient>
                                             </defs>
                                             <CartesianGrid strokeDasharray="3 3" vertical={false} stroke="#f1f5f9" />
                                             <XAxis dataKey="date" axisLine={false} tickLine={false} tick={{ fill: '#94a3b8', fontSize: 12 }} dy={10} />
@@ -236,7 +245,8 @@ const MemberDashboard = () => {
                                                 contentStyle={{ backgroundColor: '#fff', borderRadius: '12px', border: 'none', boxShadow: '0 4px 6px -1px rgb(0 0 0 / 0.1)' }}
                                                 itemStyle={{ color: '#1e293b' }}
                                             />
-                                            <Area type="monotone" dataKey="weight" stroke="#4F46E5" strokeWidth={3} fillOpacity={1} fill="url(#colorWeight)" />
+                                            <Area name="Weight (kg)" type="monotone" dataKey="weight" stroke="#4F46E5" strokeWidth={3} fillOpacity={1} fill="url(#colorWeight)" />
+                                            <Area name="Muscle Mass (kg)" type="monotone" dataKey="muscleMass" stroke="#10B981" strokeWidth={3} strokeDasharray="5 5" fillOpacity={1} fill="url(#colorMuscle)" />
                                         </AreaChart>
                                     </ResponsiveContainer>
                                 ) : (

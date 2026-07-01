@@ -102,17 +102,81 @@ const initializeMockData = () => {
             }
         ]));
     }
-    if (!localStorage.getItem(MOCK_ATTENDANCE_KEY)) {
+    const existingAttendance = localStorage.getItem(MOCK_ATTENDANCE_KEY);
+    if (!existingAttendance || JSON.parse(existingAttendance).length <= 3) {
         localStorage.setItem(MOCK_ATTENDANCE_KEY, JSON.stringify([
-            { attendance_id: "a1", member_id: "mock_member_1", date: "2026-06-28", status: "present" },
-            { attendance_id: "a2", member_id: "mock_member_1", date: "2026-06-29", status: "present" },
-            { attendance_id: "a3", member_id: "mock_member_1", date: "2026-06-30", status: "absent" }
+            { attendance_id: "a1", member_id: "mock_member_1", date: "2026-06-15", status: "present" },
+            { attendance_id: "a2", member_id: "mock_member_1", date: "2026-06-16", status: "present" },
+            { attendance_id: "a3", member_id: "mock_member_1", date: "2026-06-18", status: "present" },
+            { attendance_id: "a4", member_id: "mock_member_1", date: "2026-06-19", status: "present" },
+            { attendance_id: "a5", member_id: "mock_member_1", date: "2026-06-22", status: "present" },
+            { attendance_id: "a6", member_id: "mock_member_1", date: "2026-06-23", status: "present" },
+            { attendance_id: "a7", member_id: "mock_member_1", date: "2026-06-24", status: "absent" },
+            { attendance_id: "a8", member_id: "mock_member_1", date: "2026-06-25", status: "present" },
+            { attendance_id: "a9", member_id: "mock_member_1", date: "2026-06-26", status: "present" },
+            { attendance_id: "a10", member_id: "mock_member_1", date: "2026-06-29", status: "present" }
         ]));
     }
-    if (!localStorage.getItem(MOCK_PROGRESS_KEY)) {
+    const existingProgress = localStorage.getItem(MOCK_PROGRESS_KEY);
+    if (!existingProgress || JSON.parse(existingProgress).length <= 1) {
         localStorage.setItem(MOCK_PROGRESS_KEY, JSON.stringify([
             {
                 progress_id: "pr1",
+                member_id: "mock_member_1",
+                trainer_id: "mock_trainer_1",
+                weight: 85.2,
+                body_fat: 16.1,
+                muscle_mass: 39.5,
+                notes: "Starting weight registered.",
+                updated_at: "2026-05-24T10:00:00.000Z",
+                trainer: { name: "Coach Mike" }
+            },
+            {
+                progress_id: "pr2",
+                member_id: "mock_member_1",
+                trainer_id: "mock_trainer_1",
+                weight: 84.6,
+                body_fat: 15.7,
+                muscle_mass: 39.9,
+                notes: "Good progress. Increasing stamina.",
+                updated_at: "2026-06-01T10:00:00.000Z",
+                trainer: { name: "Coach Mike" }
+            },
+            {
+                progress_id: "pr3",
+                member_id: "mock_member_1",
+                trainer_id: "mock_trainer_1",
+                weight: 84.1,
+                body_fat: 15.3,
+                muscle_mass: 40.2,
+                notes: "Weight dropping gradually.",
+                updated_at: "2026-06-08T10:00:00.000Z",
+                trainer: { name: "Coach Mike" }
+            },
+            {
+                progress_id: "pr4",
+                member_id: "mock_member_1",
+                trainer_id: "mock_trainer_1",
+                weight: 83.5,
+                body_fat: 14.8,
+                muscle_mass: 40.6,
+                notes: "Strong lifting session.",
+                updated_at: "2026-06-15T10:00:00.000Z",
+                trainer: { name: "Coach Mike" }
+            },
+            {
+                progress_id: "pr5",
+                member_id: "mock_member_1",
+                trainer_id: "mock_trainer_1",
+                weight: 83.0,
+                body_fat: 14.5,
+                muscle_mass: 40.9,
+                notes: "Muscle definition improving.",
+                updated_at: "2026-06-22T10:00:00.000Z",
+                trainer: { name: "Coach Mike" }
+            },
+            {
+                progress_id: "pr6",
                 member_id: "mock_member_1",
                 trainer_id: "mock_trainer_1",
                 weight: 82.5,
