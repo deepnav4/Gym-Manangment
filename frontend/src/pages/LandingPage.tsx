@@ -397,17 +397,6 @@ const LandingPage = () => {
                                 <a href="#" className="hover:text-slate-900 transition-colors">Terms of Service</a>
                                 <a href="#" className="hover:text-slate-900 transition-colors">Cookie Policy</a>
                             </div>
-                            <p className="text-xs text-slate-500">
-                                Designed & Developed by{' '}
-                                <a
-                                    href="https://navdeep-site.vercel.app"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="font-semibold text-slate-900 hover:text-slate-700 transition-colors italic"
-                                >
-                                    Navdeep
-                                </a>
-                            </p>
                         </div>
                         <div className="flex items-center gap-6">
                             <a href="#" className="text-slate-500 hover:text-slate-900 transition-colors">

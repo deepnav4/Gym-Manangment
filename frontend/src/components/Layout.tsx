@@ -318,17 +318,6 @@ const Layout = () => {
                         </div>
                         <div className="flex flex-col items-center md:items-end gap-1 text-center md:text-right">
                             <p className="text-xs sm:text-sm">&copy; 2025 GymFlow Inc.</p>
-                            <p className="text-xs">
-                                Designed & Developed by{' '}
-                                <a
-                                    href="https://navdeep-site.vercel.app"
-                                    target="_blank"
-                                    rel="noopener noreferrer"
-                                    className="font-semibold text-slate-900 hover:text-slate-700 transition-colors italic"
-                                >
-                                    Navdeep
-                                </a>
-                            </p>
                         </div>
                     </div>
                 </footer>
