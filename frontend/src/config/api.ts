@@ -18,6 +18,11 @@ api.interceptors.request.use(
         const token = localStorage.getItem('token');
         if (token) {
             config.headers.Authorization = `Bearer ${token}`;
+            
+            // If in mock mode, bypass backend request immediately to trigger fallback
+            if (token.startsWith('mock_')) {
+                return Promise.reject(new Error('Mock token detected - bypassing API'));
+            }
         }
         return config;
     },
@@ -32,15 +37,18 @@ api.interceptors.response.use(
         return response;
     },
     (error) => {
+        const token = localStorage.getItem('token');
+        const isMockMode = token && token.startsWith('mock_');
+
         // Handle 401 Unauthorized - redirect to login
-        if (error.response?.status === 401) {
+        if (error.response?.status === 401 && !isMockMode) {
             localStorage.removeItem('token');
             localStorage.removeItem('user');
             window.location.href = '/login';
         }
 
         // Handle 403 Forbidden
-        if (error.response?.status === 403) {
+        if (error.response?.status === 403 && !isMockMode) {
             window.location.href = '/unauthorized';
         }
 
